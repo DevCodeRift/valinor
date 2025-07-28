@@ -182,7 +182,7 @@ export class ApiServer {
           client_secret: this.discordClientSecret,
           grant_type: 'authorization_code',
           code: code,
-          redirect_uri: `${req.headers.origin}/discord`,
+          redirect_uri: 'http://178.62.35.158:3000/discord',
           scope: 'identify guilds'
         }, {
           headers: {
