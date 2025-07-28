@@ -1,15 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Settings, MessageSquare, Bot, Users, Shield } from 'lucide-react'
-import DiscordAuthButton, { useDiscordAuth } from './DiscordAuth'
-
-interface Guild {
-  id: string
-  name: string
-  memberCount?: number
-  icon?: string | null
-  permissions?: string
-  owner?: boolean
-}
+import { Settings, MessageSquare, Bot, Users } from 'lucide-react'
+import { useDiscordAuth } from './DiscordAuth'
 
 interface Channel {
   id: string
@@ -35,9 +26,8 @@ interface MonitoredAlliance {
 }
 
 const DiscordSettings = () => {
-  const { user, guilds: userGuilds, isAuthenticated } = useDiscordAuth()
+  const { user, guilds, isAuthenticated } = useDiscordAuth()
   const [botStatus, setBotStatus] = useState<BotStatus | null>(null)
-  const [availableGuilds, setAvailableGuilds] = useState<Guild[]>([])
   const [selectedGuild, setSelectedGuild] = useState<string>('')
   const [channels, setChannels] = useState<Channel[]>([])
   const [selectedChannel, setSelectedChannel] = useState<string>('')
@@ -52,23 +42,11 @@ const DiscordSettings = () => {
     }
   }, [isAuthenticated, user])
 
-  // Check if user has administrator permissions
-  const hasAdminPermissions = (permissions: string): boolean => {
-    const permissionBits = BigInt(permissions)
-    const adminBit = BigInt(0x8) // Administrator permission
-    return (permissionBits & adminBit) === adminBit
-  }
-
   const fetchUserManagedGuilds = async () => {
     try {
       if (!user) return
 
-      // Filter user guilds to only include those where they have admin permissions
-      const adminGuilds = userGuilds.filter(guild => 
-        guild.owner || hasAdminPermissions(guild.permissions)
-      )
-
-      // Get bot's guilds and cross-reference with user's admin guilds
+      // Get bot's guilds
       const response = await fetch('/api/bot/guilds', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('discord_access_token')}`
@@ -77,13 +55,8 @@ const DiscordSettings = () => {
 
       if (response.ok) {
         const botGuilds = await response.json()
-        
-        // Only show guilds where both the bot and user (with admin perms) are present
-        const mutualGuilds = adminGuilds.filter(userGuild =>
-          botGuilds.some((botGuild: Guild) => botGuild.id === userGuild.id)
-        )
-
-        setAvailableGuilds(mutualGuilds)
+        console.log('Bot guilds:', botGuilds)
+        // TODO: Filter guilds where both bot and user (with admin perms) are present
       } else {
         setError('Failed to fetch bot guilds')
       }
@@ -110,7 +83,6 @@ const DiscordSettings = () => {
       const response = await fetch('/api/bot/config')
       if (response.ok) {
         const data = await response.json()
-        setGuilds(data.guilds || [])
         setMonitoring(data.monitoring || [])
       }
     } catch (err) {
@@ -266,7 +238,7 @@ const DiscordSettings = () => {
             <option value="">Select a Discord server...</option>
             {guilds.map((guild) => (
               <option key={guild.id} value={guild.id}>
-                {guild.name} ({guild.memberCount} members)
+                {guild.name}
               </option>
             ))}
           </select>
