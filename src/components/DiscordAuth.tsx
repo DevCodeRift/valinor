@@ -39,10 +39,10 @@ export const useDiscordAuth = (): AuthContextType => {
   useEffect(() => {
     checkAuthStatus()
     
-    // Handle OAuth callback
+    // Handle OAuth callback on any page
     const urlParams = new URLSearchParams(window.location.search)
     const code = urlParams.get('code')
-    if (code) {
+    if (code && window.location.pathname === '/auth/discord/callback') {
       handleOAuthCallback(code)
     }
   }, [])
