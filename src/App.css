@@ -336,3 +336,37 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/* Discord Colors */
+:root {
+  --discord-blue: #5865F2;
+  --discord-blue-dark: #4752C4;
+  --discord-green: #23A559;
+  --discord-red: #ED4245;
+  --discord-yellow: #FEE75C;
+  --discord-gray: #747F8D;
+}
+
+.bg-discord-blue {
+  background-color: var(--discord-blue);
+}
+
+.bg-discord-blue-dark {
+  background-color: var(--discord-blue-dark);
+}
+
+.text-discord-blue {
+  color: var(--discord-blue);
+}
+
+.border-discord-blue {
+  border-color: var(--discord-blue);
+}
+
+.bg-discord-blue {
+  background-color: var(--discord-blue);
+}
+
+.hover\:bg-discord-blue-dark:hover {
+  background-color: var(--discord-blue-dark);
+}

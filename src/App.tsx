@@ -4,7 +4,7 @@ import { Activity, Settings, Bell, Bot } from 'lucide-react'
 import Dashboard from './components/Dashboard'
 import AllianceMonitor from './components/AllianceMonitor'
 import ApiSettings from './components/ApiSettings'
-import DiscordSettings from './components/DiscordSettings'
+import DiscordSettings from './components/DiscordSettingsWithAuth'
 import './App.css'
 
 function App() {
