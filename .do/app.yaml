@@ -1,0 +1,32 @@
+# Digital Ocean App Platform Configuration
+name: valinor-alliance-monitor
+services:
+- environment_slug: node-js
+  github:
+    branch: main
+    deploy_on_push: true
+    repo: your-username/valinor-alliance-monitor
+  name: web
+  build_command: npm install && npm run build && cd bot && npm install && npm run build
+  run_command: chmod +x docker-entrypoint.sh && ./docker-entrypoint.sh
+  http_port: 3000
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  routes:
+  - path: /
+  envs:
+  - key: DISCORD_TOKEN
+    value: ${DISCORD_TOKEN}
+    type: SECRET
+  - key: DISCORD_CLIENT_ID
+    value: ${DISCORD_CLIENT_ID}
+    type: SECRET
+  - key: PW_API_KEY
+    value: ${PW_API_KEY}
+    type: SECRET
+  - key: NODE_ENV
+    value: production
+  - key: DB_PATH
+    value: /app/data/valinor.db
+  - key: CHECK_INTERVAL_MINUTES
+    value: "5"

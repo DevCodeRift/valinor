@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  valinor-monitor:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      # Discord Bot Configuration
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - DISCORD_CLIENT_ID=${DISCORD_CLIENT_ID}
+      - DISCORD_GUILD_ID=${DISCORD_GUILD_ID}
+      - DISCORD_CHANNEL_ID=${DISCORD_CHANNEL_ID}
+      
+      # Politics and War API
+      - PW_API_KEY=${PW_API_KEY}
+      
+      # Database
+      - DB_PATH=/app/data/valinor.db
+      
+      # Monitoring Settings
+      - CHECK_INTERVAL_MINUTES=5
+      - MAX_WARS_TO_TRACK=100
+    volumes:
+      - valinor_data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  valinor_data:

@@ -1,0 +1,14 @@
+# Health check endpoint
+GET http://localhost:3000/health
+
+### Test Discord bot endpoints (if implemented)
+GET http://localhost:3000/api/status
+
+### Politics and War API test
+POST https://api.politicsandwar.com/graphql
+Content-Type: application/json
+X-Bot-Key: your_api_key_here
+
+{
+  "query": "query { nations(first: 1) { data { id nation_name } } }"
+}

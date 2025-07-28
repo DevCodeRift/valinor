@@ -1,0 +1,212 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 50%, #0a0a0a 100%);
+  color: #ff00ff;
+  font-family: 'Courier New', monospace;
+}
+
+.app-header {
+  background: linear-gradient(135deg, #ff00ff 0%, #ff3399 50%, #ff00ff 100%);
+  color: #000;
+  padding: 2rem 0;
+  box-shadow: 0 0 30px #ff00ff;
+  border-bottom: 2px solid #ff00ff;
+  text-shadow: 0 0 10px #ff00ff;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-icon {
+  width: 3rem;
+  height: 3rem;
+  filter: drop-shadow(0 0 10px #ff00ff);
+}
+
+.ascii-title {
+  font-family: 'Courier New', monospace;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1;
+  text-shadow: 0 0 20px #ff00ff;
+  color: #000;
+  white-space: pre;
+  text-align: center;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #000;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  border: 2px solid transparent;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  font-weight: bold;
+  text-shadow: 0 0 5px #ff00ff;
+}
+
+.nav-link:hover {
+  background: rgba(255, 0, 255, 0.2);
+  border-color: #ff00ff;
+  box-shadow: 0 0 20px #ff00ff;
+  transform: translateY(-2px);
+}
+
+.main-content {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+}
+
+.card {
+  background: linear-gradient(135deg, rgba(255, 0, 255, 0.1) 0%, rgba(255, 51, 153, 0.05) 100%);
+  border: 2px solid #ff00ff;
+  border-radius: 1rem;
+  box-shadow: 0 0 30px rgba(255, 0, 255, 0.3);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+  color: #ff00ff;
+}
+
+.card h1, .card h2, .card h3 {
+  color: #ff00ff;
+  text-shadow: 0 0 10px #ff00ff;
+  margin-bottom: 1rem;
+}
+
+.button {
+  background: linear-gradient(135deg, #ff00ff 0%, #ff3399 100%);
+  color: #000;
+  border: 2px solid #ff00ff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all 0.3s;
+  text-shadow: none;
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px #ff00ff;
+  background: linear-gradient(135deg, #ff3399 0%, #ff00ff 100%);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #ff00ff;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ff00ff;
+  font-family: 'Courier New', monospace;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #ff3399;
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+}
+
+.input::placeholder {
+  color: rgba(255, 0, 255, 0.6);
+}
+
+.war-alert {
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.2) 0%, rgba(255, 0, 255, 0.1) 100%);
+  border: 2px solid #ff0040;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 20px rgba(255, 0, 64, 0.3);
+}
+
+.war-alert.active {
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.3) 0%, rgba(255, 0, 255, 0.2) 100%);
+  border-color: #ff0066;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 64, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(255, 0, 64, 0.6); }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.neon-text {
+  color: #ff00ff;
+  text-shadow: 0 0 10px #ff00ff;
+}
+
+.cyber-border {
+  border: 2px solid #ff00ff;
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .nav {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .main-content {
+    padding: 1rem;
+  }
+  
+  .ascii-title {
+    font-size: 1.5rem;
+  }
+}
