@@ -58,8 +58,22 @@ client.once(Events.ClientReady, async (readyClient) => {
   // Register slash commands
   try {
     console.log('Started refreshing application (/) commands.')
+    
+    // Register commands globally
     await readyClient.application?.commands.set(commands)
-    console.log('Successfully reloaded application (/) commands.')
+    console.log('Successfully reloaded global application (/) commands.')
+    
+    // Also register for all guilds the bot is in (for faster testing)
+    const guilds = readyClient.guilds.cache
+    for (const guild of guilds.values()) {
+      try {
+        await guild.commands.set(commands)
+        console.log(`✅ Commands registered for guild: ${guild.name}`)
+      } catch (guildError) {
+        console.error(`Error registering commands for guild ${guild.name}:`, guildError)
+      }
+    }
+    
   } catch (error) {
     console.error('Error registering commands:', error)
   }
