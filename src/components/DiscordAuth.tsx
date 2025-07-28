@@ -28,7 +28,7 @@ interface AuthContextType {
 }
 
 const DISCORD_CLIENT_ID = '1399211561670807665'
-const REDIRECT_URI = encodeURIComponent(`${window.location.origin}/discord`)
+const REDIRECT_URI = encodeURIComponent('http://178.62.35.158:3000/discord')
 const DISCORD_OAUTH_URL = `https://discord.com/api/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=identify%20guilds`
 
 export const useDiscordAuth = (): AuthContextType => {
