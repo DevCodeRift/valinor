@@ -4,7 +4,8 @@ import { Activity, Settings, Bell, Bot } from 'lucide-react'
 import Dashboard from './components/Dashboard'
 import AllianceMonitor from './components/AllianceMonitor'
 import ApiSettings from './components/ApiSettings'
-import DiscordSettings from './components/DiscordSettingsWithAuth'
+import DiscordSettings from './components/DiscordSettings'
+import DiscordCallback from './components/DiscordCallback'
 import './App.css'
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
           <Route path="/monitor" element={<AllianceMonitor />} />
           <Route path="/settings" element={<ApiSettings apiKey={apiKey} setApiKey={setApiKey} />} />
           <Route path="/discord" element={<DiscordSettings />} />
+          <Route path="/auth/discord/callback" element={<DiscordCallback />} />
         </Routes>
       </main>
     </div>

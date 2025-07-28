@@ -28,7 +28,7 @@ interface AuthContextType {
 }
 
 const DISCORD_CLIENT_ID = '1399211561670807665'
-const REDIRECT_URI = encodeURIComponent(`${window.location.origin}/auth/discord/callback`)
+const REDIRECT_URI = encodeURIComponent(`${window.location.origin}/discord`)
 const DISCORD_OAUTH_URL = `https://discord.com/api/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=identify%20guilds`
 
 export const useDiscordAuth = (): AuthContextType => {
@@ -39,11 +39,13 @@ export const useDiscordAuth = (): AuthContextType => {
   useEffect(() => {
     checkAuthStatus()
     
-    // Handle OAuth callback on any page
+    // Handle OAuth callback on any page (especially Discord settings)
     const urlParams = new URLSearchParams(window.location.search)
     const code = urlParams.get('code')
-    if (code && window.location.pathname === '/auth/discord/callback') {
+    if (code) {
       handleOAuthCallback(code)
+      // Clean up URL after processing
+      window.history.replaceState({}, document.title, window.location.pathname)
     }
   }, [])
 
