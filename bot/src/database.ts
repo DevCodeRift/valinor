@@ -66,6 +66,12 @@ export class Database {
         notified BOOLEAN DEFAULT FALSE,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         UNIQUE(war_id)
+      )`,
+
+      `CREATE TABLE IF NOT EXISTS guild_settings (
+        guild_id TEXT PRIMARY KEY,
+        notification_channel_id TEXT,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
       )`
     ]
 
@@ -190,6 +196,33 @@ export class Database {
     await this.run(
       'DELETE FROM tracked_wars WHERE created_at < datetime("now", "-30 days")'
     )
+  }
+
+  // Additional methods for API integration
+  async getGlobalConfig(): Promise<any> {
+    // Return global bot configuration
+    return {
+      version: '1.0.0',
+      monitoring_enabled: true,
+      check_interval: 5 // minutes
+    }
+  }
+
+  async setNotificationChannel(guildId: string, channelId: string): Promise<void> {
+    // Update or create a default notification channel setting for a guild
+    await this.run(
+      `INSERT OR REPLACE INTO guild_settings (guild_id, notification_channel_id, updated_at) 
+       VALUES (?, ?, CURRENT_TIMESTAMP)`,
+      [guildId, channelId]
+    )
+  }
+
+  async getNotificationChannel(guildId: string): Promise<string | null> {
+    const row = await this.get(
+      'SELECT notification_channel_id FROM guild_settings WHERE guild_id = ?',
+      [guildId]
+    )
+    return row?.notification_channel_id || null
   }
 
   async close(): Promise<void> {

@@ -210,3 +210,129 @@
     font-size: 1.5rem;
   }
 }
+
+/* Discord Settings Styles */
+.discord-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.bot-status {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  color: #ff00ff;
+}
+
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-indicator.online {
+  background: #00ff00;
+  box-shadow: 0 0 10px #00ff00;
+}
+
+.status-indicator.offline {
+  background: #ff0000;
+  box-shadow: 0 0 10px #ff0000;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #ff00ff;
+  font-weight: bold;
+  text-shadow: 0 0 5px #ff00ff;
+}
+
+.select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #ff00ff;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ff00ff;
+  font-family: 'Courier New', monospace;
+  cursor: pointer;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #ff3399;
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+}
+
+.select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.select option {
+  background: #000;
+  color: #ff00ff;
+}
+
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.monitoring-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.monitoring-item {
+  background: rgba(255, 0, 255, 0.1);
+  border: 1px solid #ff00ff;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  color: #ff00ff;
+}
+
+.monitoring-item div {
+  margin-bottom: 0.5rem;
+}
+
+.error {
+  color: #ff4444;
+  padding: 0.75rem;
+  background: rgba(255, 68, 68, 0.1);
+  border: 1px solid #ff4444;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 0, 255, 0.3);
+  border-top: 3px solid #ff00ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 2rem auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

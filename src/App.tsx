@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
-import { Activity, Settings, Bell } from 'lucide-react'
+import { Activity, Settings, Bell, Bot } from 'lucide-react'
 import Dashboard from './components/Dashboard'
 import AllianceMonitor from './components/AllianceMonitor'
 import ApiSettings from './components/ApiSettings'
+import DiscordSettings from './components/DiscordSettings'
 import './App.css'
 
 function App() {
@@ -43,6 +44,10 @@ function App() {
               <Settings />
               API Settings
             </Link>
+            <Link to="/discord" className="nav-link">
+              <Bot />
+              Discord Settings
+            </Link>
           </nav>
         </div>
       </header>
@@ -52,6 +57,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/monitor" element={<AllianceMonitor />} />
           <Route path="/settings" element={<ApiSettings apiKey={apiKey} setApiKey={setApiKey} />} />
+          <Route path="/discord" element={<DiscordSettings />} />
         </Routes>
       </main>
     </div>

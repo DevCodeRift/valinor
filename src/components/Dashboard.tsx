@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useQuery, gql } from '@apollo/client'
+import { useNavigate } from 'react-router-dom'
 import { Activity, Users, Shield, AlertTriangle } from 'lucide-react'
 
 const GET_ALLIANCE_INFO = gql`
@@ -81,6 +82,7 @@ interface Alliance {
 }
 
 const Dashboard = () => {
+  const navigate = useNavigate()
   const [allianceId] = useState(10523) // Valinor Alliance ID
   const [apiKeySet, setApiKeySet] = useState(false)
   
@@ -123,7 +125,7 @@ const Dashboard = () => {
           </p>
           <button 
             className="button"
-            onClick={() => window.location.href = '/settings'}
+            onClick={() => navigate('/settings')}
           >
             🔑 GO TO API SETTINGS
           </button>

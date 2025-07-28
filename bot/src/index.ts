@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 import { Database } from './database'
 import { PoliticsAndWarAPI } from './api'
 import { WarMonitor } from './warMonitor'
+import { ApiServer } from './api-server'
 
 dotenv.config()
 
@@ -77,6 +78,10 @@ client.once(Events.ClientReady, async (readyClient) => {
   } catch (error) {
     console.error('Error registering commands:', error)
   }
+  
+  // Start API server for web dashboard communication
+  const apiServer = new ApiServer(readyClient, database)
+  apiServer.start(3001)
   
   // Start war monitoring
   startWarMonitoring()
